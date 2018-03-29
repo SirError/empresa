@@ -6,7 +6,9 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class Table {
+	@SerializedName("count")
+	private int count;
 
 	@SerializedName("rows")
 	@Expose
@@ -18,6 +20,14 @@ public class Example {
 
 	public void setRows(List<Pessoa> rows) {
 		this.rows = rows;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }
