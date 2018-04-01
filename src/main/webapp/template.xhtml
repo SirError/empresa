@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 <style>
@@ -196,7 +197,9 @@ a {
 
 		<!-- Content -->
 		<main class="s-layout__content">
-		<h1>Full View, Please!</h1>
+		<ui:insert name="conteudo">
+	       Template
+	    </ui:insert>
 		</main>
 	</div>
 </h:body>

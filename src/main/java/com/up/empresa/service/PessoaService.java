@@ -1,49 +1,81 @@
 package com.up.empresa.service;
 
-import java.io.IOException;
+import java.io.Serializable;
+import java.util.Properties;
 
-import com.up.empresa.entity.Table;
-import com.up.empresa.entity.Token;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.up.empresa.config.Configuration;
 import com.up.empresa.entity.Pessoa;
-import com.up.empresa.repository.LoginRepository;
-import com.up.empresa.repository.PessoaRepository;
+import com.up.empresa.entity.Table;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+@Named
+public class PessoaService implements Serializable{
+    
+	private static final long serialVersionUID = 1L;
 
-public class PessoaService {
-	public Table getPessoas() throws IOException {
-		PessoaRepository repository = PeopleServiceGenerator.createService(PessoaRepository.class);
-
-		return repository.listPessoas().execute().body();
+	@Inject    
+    @Configuration
+    private Properties properties;
+    
+	private Client client = ClientBuilder.newClient();
+	
+	private String getUri() {
+		return properties.getProperty("url");
 	}
+	
+	public Pessoa get(int id) {
+        return client
+          .target(getUri() + "people")
+          
+          .path(String.valueOf(id))
+          .request(MediaType.APPLICATION_JSON)
+          .get(Pessoa.class);
+    }
+    
+    public Table<Pessoa> getPage(int page, int limit) {
+        return client
+          .target(getUri() + "people")
+          .queryParam("page", page)
+          .queryParam("limit", limit)
+          .request(MediaType.APPLICATION_JSON)
+          .get(new GenericType<Table<Pessoa>>(){});        
+    }
+    
 
-	public Pessoa getPessoa() throws IOException {
+    public Pessoa save(Pessoa p, String token) {
+    	return client
+    	          .target(getUri() + "people")
+    	          .request(MediaType.APPLICATION_JSON)
+    	          .header("Authorization", "Bearer " + token)
+    	         
+    	          .post(Entity.json(p), Pessoa.class);
+    }
+    
+    public Pessoa update(Pessoa p, String token) {
+    	return client
+    	          .target(getUri() + "people/" + p.getId())
+    	          .request(MediaType.APPLICATION_JSON)
+    	          .header("Authorization", "Bearer " + token)
+    	         
+    	          .put(Entity.json(p), Pessoa.class);
+    }
+    
 
-		PessoaRepository repository = PeopleServiceGenerator.createService(PessoaRepository.class);
+    public Response delete(Pessoa p, String token) {
+    	  return client
+    	          .target(getUri() + "people/" + p.getId())
+    	          .request(MediaType.APPLICATION_JSON)
+    	          .header("Authorization", "Bearer " + token)
+    	         
+    	          .delete();
+    }
 
-		return repository.getPessoa(1).execute().body();
-
-	}
-
-	public static void main(String[] args) {
-		try {
-			LoginRepository loginRepository = PeopleServiceGenerator.createService(LoginRepository.class);
-			
-			Token body = loginRepository.login().execute().body();
-			System.out.println(body.getToken());
-			
-			Pessoa pessoa = new Pessoa();
-			pessoa.setTitle("Hello World");
-			
-			PessoaRepository repository = PeopleServiceGenerator.createServiceToken(PessoaRepository.class, body.getToken());
-			repository.salvaPessoa(pessoa);
-			new PessoaService().getPessoas().getRows().forEach(System.out::println);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

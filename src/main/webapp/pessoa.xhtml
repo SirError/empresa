@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="conteudo">
+	    	<h:form>
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" value="#{pessoaController.pessoa.id}"/>
+						</div>
+						<div class="ui-g-12">
+							<p:outputLabel for="cpf" value="Nome" />
+							<p:inputText id="cpf" value="#{pessoaController.pessoa.title}"/>
+						</div>
+						<div class="ui-g-12 ui-md-6">
+							<p:commandButton value="Salvar" action="#{pessoaController.salvar()}"/>
+						</div>
+						<div class="ui-g-12 ui-md-6">
+							<p:commandButton value="Cancelar"/>
+						</div>
+					</div>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>

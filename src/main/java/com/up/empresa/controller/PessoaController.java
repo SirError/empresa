@@ -1,14 +1,16 @@
 package com.up.empresa.controller;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.up.empresa.entity.Pessoa;
+import com.up.empresa.entity.Token;
 import com.up.empresa.service.PessoaService;
+import com.up.empresa.service.TokenService;
 
 @Named
 @ViewScoped
@@ -18,20 +20,17 @@ public class PessoaController implements Serializable {
 
 	private Pessoa pessoa = new Pessoa();
 
+	@Inject
+	private PessoaService service;
+
+	@Inject
+	private TokenService tokenService;
+	
 	private List<Pessoa> pessoas;
 
 	public String salvar() {
-		System.out.println(pessoa.getTitle());
-		pessoa = new Pessoa();
-		
-		
-		try {
-			System.out.println(new PessoaService().getPessoa());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Token token = tokenService.getToken();
+		service.save(pessoa, token.getToken());
 		return null;
 	}
 

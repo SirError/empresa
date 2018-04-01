@@ -1,12 +1,7 @@
 package com.up.empresa.entity;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Token {
 
-	@SerializedName("token")
-	@Expose
 	private String token;
 
 	public String getToken() {

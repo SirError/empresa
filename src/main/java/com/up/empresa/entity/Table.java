@@ -3,22 +3,17 @@ package com.up.empresa.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class Table<T> {
 
-public class Table {
-	@SerializedName("count")
 	private int count;
 
-	@SerializedName("rows")
-	@Expose
-	private List<Pessoa> rows = new ArrayList<>();
+	private List<T> rows = new ArrayList<>();
 
-	public List<Pessoa> getRows() {
+	public List<T> getRows() {
 		return rows;
 	}
 
-	public void setRows(List<Pessoa> rows) {
+	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
 

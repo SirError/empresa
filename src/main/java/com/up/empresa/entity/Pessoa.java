@@ -1,16 +1,18 @@
 package com.up.empresa.entity;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Pessoa {
 
-	@SerializedName("id")
-	@Expose
-	private Long id;
-	@SerializedName("title")
-	@Expose
+	// @JsonProperty(access = Access.WRITE_ONLY)
+	private Long id = 0L;
+
 	private String title;
+
+	public Pessoa() {
+	}
+
+	public Pessoa(String title) {
+		this.title = title;
+	}
 
 	public Long getId() {
 		return id;
