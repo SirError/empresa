@@ -1,10 +1,13 @@
 package com.up.empresa.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Pessoa {
 
 	// @JsonProperty(access = Access.WRITE_ONLY)
 	private Long id = 0L;
 
+	@NotBlank(message="Title não preenchido.")
 	private String title;
 
 	public Pessoa() {

@@ -8,18 +8,31 @@
 				<div class="ui-fluid">
 					<div class="ui-g">
 					    <div class="ui-g-12">
-					    	<p:outputLabel for="input"	value="ID"/>
-							<p:inputText id="input" value="#{pessoaController.pessoa.id}"/>
+					    	<p:messages/>
 						</div>
-						<div class="ui-g-12">
+					</div>	
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" 
+							             value="#{pessoaController.pessoa.id}"
+							             readonly="true"/>
+						</div>
+						<div class="ui-g-10">
 							<p:outputLabel for="cpf" value="Nome" />
 							<p:inputText id="cpf" value="#{pessoaController.pessoa.title}"/>
 						</div>
-						<div class="ui-g-12 ui-md-6">
-							<p:commandButton value="Salvar" action="#{pessoaController.salvar()}"/>
+					</div>	
+					<div class="ui-g">	
+						<div class="ui-sm-12 ui-md-6">
+							<p:commandButton value="Salvar" 
+							                 action="#{pessoaController.salvar()}"
+							                 update="@form"/>
 						</div>
-						<div class="ui-g-12 ui-md-6">
-							<p:commandButton value="Cancelar"/>
+						<div class="ui-sm-12 ui-md-6">
+							<p:button value="Cancelar"
+							          outcome="/pessoas.xhtml?faces-redirect=true"
+							          />
 						</div>
 					</div>
 				</div>

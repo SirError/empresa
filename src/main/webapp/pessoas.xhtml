@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="conteudo">
+	    	<h:form>
+	    		<div class="ui-fluid">
+	    			<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<p:dataTable var="item" 
+					             value="#{pessoaController.lazyModel}" 
+					             paginator="true" 
+				                 paginatorPosition="top"
+				                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+				                 	{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"				        
+					             rows="10"
+				                 selectionMode="single" 
+				                 reflow="true"
+				                 id="carTable" 
+				                 lazy="true"
+                         
+				                 selection="#{pessoaController.selectedPessoa}">
+				  		<f:facet name="paginatorTopLeft">
+				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/pessoa.xhtml?faces-redirect=true" />
+				        </f:facet>
+				        <p:column style="width: 70px">
+				        	<p:commandButton  action="#{pessoaController.alterar(item)}"
+				        	                  icon="fa fa-edit"
+				        	                  style="width: 30px"  />
+				        	<p:commandButton  action="#{pessoaController.remover(item)}"
+				        					  icon="fa fa-trash" 
+				        	                  style="width: 30px" 
+				        	                  update="@form" >
+				        	   <p:confirm header="Confirmação" 
+				        	              message="Deseja remover o registro?" 
+				        	              icon="ui-icon-alert" 
+				        	              />               
+				        	</p:commandButton>                  
+				        </p:column>
+				        <p:column headerText="Id" style="width:50px">
+				            <h:outputText value="#{item.id}" />
+				        </p:column>
+				        <p:column headerText="Title" style="width:500px">
+				            <h:outputText value="#{item.title}" />
+				        </p:column>
+				    </p:dataTable>
+				</div>	    
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>
