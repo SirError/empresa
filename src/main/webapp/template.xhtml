@@ -42,22 +42,27 @@
                             <h:graphicImage name="main/images/logo.svg" />
                             <h:graphicImage id="BlueLogo" styleClass="hiddenLogo" name="main/images/logoBlue.svg" />
                         </span>
-                        <div class="MenuSideMainLink bordersOfMenuSide"><h:graphicImage name="main/images/zoom.svg" class="zoomIcon"/><input id="menuSearch" type="text" placeholder="Search Menu" class="boldFont fontSize14 mustClose searchInput"/></div>
+                        <div class="MenuSideMainLink bordersOfMenuSide"><h:graphicImage name="main/images/zoom.svg" class="zoomIcon"/><input id="menuSearch" type="text" placeholder="Pesquisar Menu" class="boldFont fontSize14 mustClose searchInput"/></div>
 
                         <span id="SubMenu-Data" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/data.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/dataBlue.svg" /><span class="MainLinkText">Cadastros</span></span>
                         <div class="SubMenuLinkContainer">
-                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Pessoas</a>
-              
-                
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Empresas</a>
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Funcionários</a>
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Credenciados</a>
                         </div>
 
-                        <span id="SubMenu-Message" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/message.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/messageBlue.svg" /><span class="MainLinkText">Outro Menu</span></span>
+                        <span id="SubMenu-Data" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/overlay.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/overlayBlue.svg" /><span class="MainLinkText">Relatórios</span></span>
                         <div class="SubMenuLinkContainer">
-                           
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Empresas</a>
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Funcionários</a>
+                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Credenciados</a>
                         </div>
 
-
-                        
+                        <span id="SubMenu-Message" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/ajaxCore.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/ajaxCoreBlue.svg" /><span class="MainLinkText">Usuários</span></span>
+                        <div class="SubMenuLinkContainer">
+                           <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Dados</a>
+                           <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Logout</a>
+                        </div>
                     </div>
                 </div>
 
@@ -77,32 +82,42 @@
                     </div>
 
                     <div id="CONTENTSIDEindent">
-
                         <!-- header bar start-->
+                        
                         <div class="ContentSideSections" id="PFTopLinksCover">
+	                         <a id="LOGOTEXTSIDE">
+	                             <span class="dispBlock logoDarkText fontSize30">Administrativo</span>
+	                             <span class="dispBlock logoBlueText fontSize28 regularFont">UP</span>
+	                         </a>                        
 
-
+							<a href="#{request.contextPath}/ui/misc/mockosx.xhtml" class="PFTopLinks floatRight boldFont marginRight20"><h:graphicImage name="main/images/pfMockosx.svg" /><span class="PFGrayText"></span><span class="PFDarkText">Qualquer coisa...</span></a>
+                        
                             <a id="mobile-menu-btn" href="#">
                                 <i class="fa fa-bars"></i>
                             </a>
 
                             <div class="mobileLogoCover">
                                 <h:graphicImage name="main/images/logoBlue.svg" style="height:40px;" styleClass="floatLeft marginRight10"/>
-                                <span class="dispBlock logoDarkText fontSize16 floatLeft">PrimeFaces <span class="dispBlock logoBlueText fontSize18 boldFont">SHOWCASE</span></span>
+                                <span class="dispBlock logoDarkText fontSize16 floatLeft">
+                                	Administrativo
+	                                <span class="dispBlock logoBlueText fontSize18 boldFont">
+	                                	UP
+	                                </span>
+                                </span>
                             </div>
-
                         </div>
                         <!-- header bar end-->
 
                         <div class="content-container">
-                            <ui:insert name="conteudo">
-
-                                <ui:insert name="subsubmenu"></ui:insert>
-
+                            <ui:insert name="content">
                                 <div class="ContentSideSections">
                                     <div class="Content100 overHidden TextShadow">
-                                        <span class="fontSize30 TextShadow orange regularFont marginBottom20 dispBlock"><ui:insert name="title" /></span>
-                                        <span class="defaultText dispTable"><ui:insert name="description" />
+                                        <span class="fontSize30 TextShadow orange regularFont marginBottom20 dispBlock">
+                                        	<ui:insert name="title"/>
+                                        </span>
+                                        
+                                        <span class="defaultText dispTable">
+                                        	<ui:insert name="description" />
                                         </span>
                                     </div>
                                 </div>
@@ -111,15 +126,15 @@
                                     <ui:insert name="implementation" />
                                 </div>
 
-                                <div id="SourceContentSide" class="ContentSideSections Source">
-                                    <div class="Content100 overHidden TextShadow">
-                                        <span class="defaultText">
-                                            <span class="fontSize16 logoBlueText">
-                                                <ui:insert name="source" />
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
+<!--                                 <div id="SourceContentSide" class="ContentSideSections Source"> -->
+<!--                                     <div class="Content100 overHidden TextShadow"> -->
+<!--                                         <span class="defaultText"> -->
+<!--                                             <span class="fontSize16 logoBlueText"> -->
+<!--                                                 <ui:insert name="source" /> -->
+<!--                                             </span> -->
+<!--                                         </span> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
 
                             </ui:insert>
                         </div>
@@ -155,5 +170,10 @@
             </ui:insert>
 
             <ui:insert name="body"></ui:insert>
+            
+            	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
         </h:body>
     </html>

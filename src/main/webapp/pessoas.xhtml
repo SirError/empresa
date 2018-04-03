@@ -4,7 +4,16 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/template.xhtml">
-		<ui:define name="conteudo">
+	    <ui:define name="title">
+	        Empresa
+	    </ui:define>
+	
+	    <ui:define name="description">
+	    	Lista das empresas cadastras...
+	    </ui:define>
+	    
+		<ui:define name="implementation">
+
 	    	<h:form>
 	    		<div class="ui-fluid">
 	    			<div class="ui-g">
@@ -28,7 +37,7 @@
 				  		<f:facet name="paginatorTopLeft">
 				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/pessoa.xhtml?faces-redirect=true" />
 				        </f:facet>
-				        <p:column style="width: 70px">
+				        <p:column headerText="Ações">
 				        	<p:commandButton  action="#{pessoaController.alterar(item)}"
 				        	                  icon="fa fa-edit"
 				        	                  style="width: 30px"  />
@@ -42,14 +51,14 @@
 				        	              />               
 				        	</p:commandButton>                  
 				        </p:column>
-				        <p:column headerText="Id" style="width:50px">
+				        <p:column headerText="Id">
 				            <h:outputText value="#{item.id}" />
 				        </p:column>
-				        <p:column headerText="Title" style="width:500px">
+				        <p:column headerText="Title">
 				            <h:outputText value="#{item.title}" />
 				        </p:column>
 				    </p:dataTable>
-				</div>	    
+				</div>
 			</h:form>  
 	    </ui:define>
   </ui:composition>
