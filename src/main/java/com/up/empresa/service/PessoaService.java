@@ -40,11 +40,12 @@ public class PessoaService implements Serializable{
           .get(Pessoa.class);
     }
     
-    public Table<Pessoa> getPage(int page, int limit) {
+    public Table<Pessoa> getPage(int page, int limit, String filter) {
         return client
           .target(getUri() + "people")
           .queryParam("page", page)
           .queryParam("limit", limit)
+          .queryParam("search", filter)
           .request(MediaType.APPLICATION_JSON)
           .get(new GenericType<Table<Pessoa>>(){});        
     }

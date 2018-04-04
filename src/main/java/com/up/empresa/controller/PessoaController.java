@@ -11,11 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.up.empresa.entity.Pessoa;
-import com.up.empresa.entity.Token;
 import com.up.empresa.helper.MessageHelper;
 import com.up.empresa.lazydatatable.LazyPessoaDataModel;
 import com.up.empresa.service.PessoaService;
-import com.up.empresa.service.TokenService;
 
 @Named
 @ViewScoped
@@ -31,9 +29,6 @@ public class PessoaController implements Serializable {
 	private PessoaService service;
 
 	@Inject
-	private TokenService tokenService;
-
-	@Inject
 	private LazyPessoaDataModel lazyModel;
 
 	@Inject
@@ -42,22 +37,28 @@ public class PessoaController implements Serializable {
 	@Inject
 	private Flash flash;
 	
+	@Inject 
+	private UsuarioLogadoController usuarioLogado;	
+	
 	private List<Pessoa> pessoas;
+
+	private String token;
 
 	@PostConstruct
 	private void onInit() {
 		Object object = flash.get("pessoa");
 		if (object != null)
 			this.pessoa = (Pessoa) object;
+		
+		token = usuarioLogado.getToken();
 	}
 	
 	public String salvar() {
-		Token token = tokenService.getToken();
 
 		if (pessoa.getId().equals(0l))
-			service.save(pessoa, token.getToken());
+			service.save(pessoa, token);
 		else
-			service.update(pessoa, token.getToken());
+			service.update(pessoa, token);
 
 		helper.onFlash().addMessage(new FacesMessage("Registro salvo com sucesso"));
 
@@ -65,8 +66,7 @@ public class PessoaController implements Serializable {
 	}
 	
 	public String remover(Pessoa p) {
-		Token token = tokenService.getToken();
-		service.delete(p, token.getToken());
+		service.delete(p, token);
 		helper.onFlash().addMessage(new FacesMessage("Registro removido com sucesso"));
 		return null;
 	}
