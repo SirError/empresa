@@ -22,7 +22,7 @@
 						</div>
 					</div>	
 					<p:dataTable var="item" 
-					             value="#{pessoaController.lazyModel}" 
+					             value="#{pessoasController.lazyModel}" 
 					             paginator="true" 
 				                 paginatorPosition="top"
 				                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
@@ -33,7 +33,7 @@
 				                 id="carTable" 
 				                 lazy="true"
                                  widgetVar="gridVar" 
-				                 selection="#{pessoaController.selectedPessoa}">
+				                 selection="#{pessoasController.selectedPessoa}">
 				        <f:facet name="header">
 				            <p:outputPanel>
 				                <h:outputText value="Buscar:" />
@@ -44,10 +44,10 @@
 				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/pessoa.xhtml?faces-redirect=true" />
 				        </f:facet>
 				        <p:column headerText="Ações">
-				        	<p:commandButton  action="#{pessoaController.alterar(item)}"
+				        	<p:commandButton  action="#{pessoasController.alterar(item)}"
 				        	                  icon="fa fa-edit"
 				        	                  style="width: 30px"  />
-				        	<p:commandButton  action="#{pessoaController.remover(item)}"
+				        	<p:commandButton  action="#{pessoasController.remover(item)}"
 				        					  icon="fa fa-trash" 
 				        	                  style="width: 30px" 
 				        	                  update="@form" >

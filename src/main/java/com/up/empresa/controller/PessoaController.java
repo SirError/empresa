@@ -1,7 +1,6 @@
 package com.up.empresa.controller;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -12,7 +11,6 @@ import javax.inject.Named;
 
 import com.up.empresa.entity.Pessoa;
 import com.up.empresa.helper.MessageHelper;
-import com.up.empresa.lazydatatable.LazyPessoaDataModel;
 import com.up.empresa.service.PessoaService;
 
 @Named
@@ -23,13 +21,9 @@ public class PessoaController implements Serializable {
 
 	private Pessoa pessoa = new Pessoa();
 
-	private Pessoa selectedPessoa;
 
 	@Inject
 	private PessoaService service;
-
-	@Inject
-	private LazyPessoaDataModel lazyModel;
 
 	@Inject
 	private MessageHelper helper;
@@ -39,8 +33,6 @@ public class PessoaController implements Serializable {
 	
 	@Inject 
 	private UsuarioLogadoController usuarioLogado;	
-	
-	private List<Pessoa> pessoas;
 
 	private String token;
 
@@ -65,47 +57,12 @@ public class PessoaController implements Serializable {
 		return "/pessoas.xhtml?faces-redirect=true";
 	}
 	
-	public String remover(Pessoa p) {
-		service.delete(p, token);
-		helper.onFlash().addMessage(new FacesMessage("Registro removido com sucesso"));
-		return null;
-	}
-
-	public String alterar(Pessoa p) {
-		flash.put("pessoa", p);
-		return "/pessoa.xhtml?faces-redirect=true";
-	}
-	
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	public List<Pessoa> getPessoas() {
-		return pessoas;
-	}
-
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
-	}
-
-	public LazyPessoaDataModel getLazyModel() {
-		return lazyModel;
-	}
-
-	public void setLazyModel(LazyPessoaDataModel lazyPessoa) {
-		this.lazyModel = lazyPessoa;
-	}
-
-	public Pessoa getSelectedPessoa() {
-		return selectedPessoa;
-	}
-
-	public void setSelectedPessoa(Pessoa selectedPessoa) {
-		this.selectedPessoa = selectedPessoa;
 	}
 
 }
