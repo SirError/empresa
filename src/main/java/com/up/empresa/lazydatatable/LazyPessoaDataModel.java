@@ -40,12 +40,17 @@ public class LazyPessoaDataModel extends LazyDataModel<Pessoa> {
 	@Override
 	public List<Pessoa> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
-		String filter = (String) filters.get("globalFilter");
-		int p =	first / pageSize;	
-		Table<Pessoa> page = datasource.getPage(++p, pageSize, filter);
-		this.setRowCount(page.getCount());
-		data = page.getRows();
-
-		return data;
+		try {
+			String filter = (String) filters.get("globalFilter");
+			int p =	first / pageSize;	
+			Table<Pessoa> page = datasource.getPage(++p, pageSize, filter);
+			this.setRowCount(page.getCount());
+			data = page.getRows();
+			
+			return data;
+			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

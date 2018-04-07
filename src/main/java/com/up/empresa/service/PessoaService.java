@@ -8,6 +8,7 @@ import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,13 +42,15 @@ public class PessoaService implements Serializable{
     }
     
     public Table<Pessoa> getPage(int page, int limit, String filter) {
-        return client
-          .target(getUri() + "people")
-          .queryParam("page", page)
-          .queryParam("limit", limit)
-          .queryParam("search", filter)
-          .request(MediaType.APPLICATION_JSON)
-          .get(new GenericType<Table<Pessoa>>(){});        
+        WebTarget query = client
+                             .target(getUri() + "people")
+                             .queryParam("page", page)
+                             .queryParam("limit", limit);
+        
+        if (filter != null && !filter.isEmpty())
+        	query = query.queryParam("search", filter);
+        
+        return query.request(MediaType.APPLICATION_JSON).get(new GenericType<Table<Pessoa>>(){});
     }
     
 

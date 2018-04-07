@@ -37,7 +37,7 @@
 				        <f:facet name="header">
 				            <p:outputPanel>
 				                <h:outputText value="Buscar:" />
-				                <p:inputText id="globalFilter" onkeyup="PF('gridVar').filter()" style="width:150px" placeholder="Buscar por.."/>
+				                <p:inputText id="globalFilter" onkeydown="executeFilter(event,'gridVar'); " style="width:150px" placeholder="Buscar por.."/>
 				            </p:outputPanel>
 				        </f:facet>         
 				  		<f:facet name="paginatorTopLeft">
