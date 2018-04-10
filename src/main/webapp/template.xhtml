@@ -62,7 +62,9 @@
                         <span id="SubMenu-Message" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/ajaxCore.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/ajaxCoreBlue.svg" /><span class="MainLinkText">Usuários</span></span>
                         <div class="SubMenuLinkContainer">
                            <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Dados</a>
-                           <a class="SubMenuLink" href="#{request.contextPath}/pessoas.xhtml">&bull; Logout</a>
+                           <h:form>
+                           		<p:commandLink styleClass="SubMenuLink" action="#{loginController.deslogar()}" value="Logout">&bull;</p:commandLink>
+                           </h:form>
                         </div>
                     </div>
                 </div>
@@ -172,9 +174,9 @@
 
             <ui:insert name="body"></ui:insert>
             
-            	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-    </p:confirmDialog>
+	        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	        	<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	        	<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	    	</p:confirmDialog>
         </h:body>
     </html>
