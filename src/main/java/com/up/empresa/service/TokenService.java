@@ -26,7 +26,7 @@ public class TokenService implements Serializable{
 	private Client client = ClientBuilder.newClient();
 
 	public Token getToken(Usuario usuario) {
-		return client.target(properties.getProperty("url") + "login")
+		return client.target(properties.getProperty("url") + "administrador/login")
 				     .request(MediaType.APPLICATION_JSON)
 				     .post(Entity.json(usuario), Token.class);
 	}

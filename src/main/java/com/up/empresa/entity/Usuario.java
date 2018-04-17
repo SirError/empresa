@@ -3,17 +3,17 @@ package com.up.empresa.entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Usuario {
-	@NotBlank(message = "Email não informado.")
-	private String email;
+	@NotBlank(message = "Login não informado.")
+	private String login;
 	@NotBlank(message = "Senha não informada.")
 	private String password;
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getPassword() {

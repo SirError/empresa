@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/template.xhtml">
+	    <ui:define name="title">
+	        Administradores
+	    </ui:define>
+	
+	    <ui:define name="description">
+	    	Lista de Administradores
+	    </ui:define>
+	    
+		<ui:define name="implementation">
+
+	    	<h:form>
+	    		<div class="ui-fluid">
+	    			<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<p:dataTable var="item" 
+					             value="#{administradoresController.lazyModel}" 
+					             paginator="true" 
+				                 paginatorPosition="top"
+				                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+				                 	{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"				        
+					             rows="10"
+				                 selectionMode="single" 
+				                 reflow="true"
+				                 id="carTable" 
+				                 lazy="true"
+                                 widgetVar="gridVar" 
+				                 selection="#{administradoresController.selectedPessoa}">
+				        <f:facet name="header">
+				            <p:outputPanel>
+				                <h:outputText value="Buscar:" />
+				                <p:inputText id="globalFilter" onkeydown="executeFilter(event,'gridVar'); " style="width:150px" placeholder="Buscar por.."/>
+				            </p:outputPanel>
+				        </f:facet>         
+				  		<f:facet name="paginatorTopLeft">
+				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/pessoa.xhtml?faces-redirect=true" />
+				        </f:facet>
+				        <p:column headerText="Ações">
+				        	<p:commandButton  action="#{administradoresController.alterar(item)}"
+				        	                  icon="fa fa-edit"
+				        	                  style="width: 30px"  />
+				        	<p:commandButton  action="#{administradoresController.remover(item)}"
+				        					  icon="fa fa-trash" 
+				        	                  style="width: 30px" 
+				        	                  update="@form" >
+				        	   <p:confirm header="Confirmação" 
+				        	              message="Deseja remover o registro?" 
+				        	              icon="ui-icon-alert" 
+				        	              />               
+				        	</p:commandButton>                  
+				        </p:column>
+				        <p:column headerText="Id">
+				            <h:outputText value="#{item.id}" />
+				        </p:column>
+				        <p:column headerText="Title">
+				            <h:outputText value="#{item.nome}" />
+				        </p:column>
+				    </p:dataTable>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>
