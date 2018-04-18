@@ -33,7 +33,7 @@
 				                 id="carTable" 
 				                 lazy="true"
                                  widgetVar="gridVar" 
-				                 selection="#{administradoresController.selectedPessoa}">
+				                 >
 				        <f:facet name="header">
 				            <p:outputPanel>
 				                <h:outputText value="Buscar:" />
@@ -41,7 +41,7 @@
 				            </p:outputPanel>
 				        </f:facet>         
 				  		<f:facet name="paginatorTopLeft">
-				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/pessoa.xhtml?faces-redirect=true" />
+				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/administrador?faces-redirect=true" />
 				        </f:facet>
 				        <p:column headerText="Ações">
 				        	<p:commandButton  action="#{administradoresController.alterar(item)}"
@@ -60,8 +60,14 @@
 				        <p:column headerText="Id">
 				            <h:outputText value="#{item.id}" />
 				        </p:column>
-				        <p:column headerText="Title">
+				        <p:column headerText="Nome">
 				            <h:outputText value="#{item.nome}" />
+				        </p:column>
+				        <p:column headerText="Login">
+				            <h:outputText value="#{item.login}" />
+				        </p:column>
+				        <p:column headerText="E-mail">
+				            <h:outputText value="#{item.email}" />
 				        </p:column>
 				    </p:dataTable>
 				</div>

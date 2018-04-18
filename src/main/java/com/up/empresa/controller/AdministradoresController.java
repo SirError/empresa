@@ -21,8 +21,6 @@ public class AdministradoresController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Administrador selectedPessoa;
-
 	@Inject
 	private AdministradorService service;
 
@@ -38,7 +36,7 @@ public class AdministradoresController implements Serializable {
 	@Inject
 	private UsuarioLogadoController usuarioLogado;
 
-	private List<Administrador> pessoas;
+	private List<Administrador> administradores;
 
 	private String token;
 
@@ -54,32 +52,24 @@ public class AdministradoresController implements Serializable {
 	}
 
 	public String alterar(Administrador p) {
-		flash.put("pessoa", p);
-		return "/pessoa.xhtml?faces-redirect=true";
+		flash.put("administrador", p);
+		return "/administrador?faces-redirect=true";
 	}
 
-	public List<Administrador> getPessoas() {
-		return pessoas;
+	public List<Administrador> getAdministradores() {
+		return administradores;
 	}
 
-	public void setPessoas(List<Administrador> pessoas) {
-		this.pessoas = pessoas;
+	public void setAdministradores(List<Administrador> administradores) {
+		this.administradores = administradores;
 	}
 
 	public AdministradoresDataModel getLazyModel() {
 		return lazyModel;
 	}
 
-	public void setLazyModel(AdministradoresDataModel lazyPessoa) {
-		this.lazyModel = lazyPessoa;
-	}
-
-	public Administrador getSelectedPessoa() {
-		return selectedPessoa;
-	}
-
-	public void setSelectedPessoa(Administrador selectedPessoa) {
-		this.selectedPessoa = selectedPessoa;
+	public void setLazyModel(AdministradoresDataModel lazyModel) {
+		this.lazyModel = lazyModel;
 	}
 
 }

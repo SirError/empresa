@@ -3,6 +3,9 @@ package com.up.empresa.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,14 +19,23 @@ public class Administrador {
 
 	@JsonProperty("id")
 	private Integer id;
+	
 	@JsonProperty("nome")
+	@NotBlank(message="Nome não preenchido.")
 	private String nome;
+	
 	@JsonProperty("login")
+	@NotBlank(message="Login não preenchido.")
 	private String login;
+	
 	@JsonProperty("email")
+	@Email(message="E-mail inválido.")
+	@NotBlank(message="E-mail não preenchido.")
 	private String email;
+	
 	@JsonProperty("password")
 	private String password;
+	
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 

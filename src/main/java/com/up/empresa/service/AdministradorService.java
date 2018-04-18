@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response;
 
 import com.up.empresa.config.Configuration;
 import com.up.empresa.entity.Administrador;
-import com.up.empresa.entity.Pessoa;
 import com.up.empresa.entity.Table;
 
 @Named
@@ -42,7 +41,7 @@ public class AdministradorService implements Serializable{
           .get(Administrador.class);
     }
     
-    public Table<Administrador> getPage(int page, int limit, String filter) {
+    public Table<Administrador> getPage(int page, int limit, String filter, String token) {
         WebTarget query = client
                              .target(getUri() + "administrador")
                              .queryParam("page", page)
@@ -51,7 +50,9 @@ public class AdministradorService implements Serializable{
         if (filter != null && !filter.isEmpty())
         	query = query.queryParam("search", filter);
         
-        return query.request(MediaType.APPLICATION_JSON).get(new GenericType<Table<Administrador>>(){});
+        return query.request(MediaType.APPLICATION_JSON)
+        		    .header("Authorization", "Bearer " + token)
+        		    .get(new GenericType<Table<Administrador>>(){});
     }
     
 

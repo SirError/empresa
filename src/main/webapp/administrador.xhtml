@@ -15,24 +15,46 @@
 					    <div class="ui-g-2">
 					    	<p:outputLabel for="input"	value="ID"/>
 							<p:inputText id="input" 
-							             value="#{pessoaController.pessoa.id}"
+							             value="#{administradorController.administrador.id}"
 							             readonly="true"/>
 						</div>
 						<div class="ui-g-10">
-							<p:outputLabel for="cpf" value="Nome" />
-							<p:inputText id="cpf" value="#{pessoaController.pessoa.title}"/>
+							<p:outputLabel for="nome" value="Nome" />
+							<p:inputText id="nome" value="#{administradorController.administrador.nome}"/>
 						</div>
 					</div>
+					
+					<div class="ui-g">
+					    <div class="ui-g-4">
+					    	<p:outputLabel for="login"	value="Login"/>
+							<p:inputText id="login" 
+							             value="#{administradorController.administrador.login}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="password"	value="Senha"/>
+							<p:password id="password" 
+							             value="#{administradorController.administrador.password}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel for="email" value="E-mail" />
+							<p:inputText id="email" value="#{administradorController.administrador.email}"/>
+						</div>
+					</div>
+					
 						
 					<div class="ui-g">	
 						<div class="ui-g-4 ui-sm-6">
 							<p:commandButton value="Salvar" 
-							                 action="#{pessoaController.salvar()}"
+							                 action="#{administradorController.salvar()}"
 							                 update="@form"/>
 						</div>
 						<div class="ui-g-4 ui-sm-6">
 							<p:button value="Cancelar"
-							          outcome="/pessoas.xhtml?faces-redirect=true"
+							          outcome="/administradores?faces-redirect=true"
 							          />
 						</div>
 					</div>

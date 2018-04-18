@@ -46,14 +46,14 @@ public class AdministradorController implements Serializable {
 	
 	public String salvar() {
 
-		if (administrador.getId().equals(0l))
+		if (administrador.getId() == null)
 			service.save(administrador, token);
 		else
 			service.update(administrador, token);
 
 		helper.onFlash().addMessage(new FacesMessage("Registro salvo com sucesso"));
 
-		return "/administradors.xhtml?faces-redirect=true";
+		return "/administradores?faces-redirect=true";
 	}
 	
 	public Administrador getAdministrador() {
