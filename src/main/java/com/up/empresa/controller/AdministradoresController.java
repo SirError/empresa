@@ -12,7 +12,7 @@ import javax.inject.Named;
 
 import com.up.empresa.entity.Administrador;
 import com.up.empresa.helper.MessageHelper;
-import com.up.empresa.lazydatatable.AdministradoresDataModel;
+import com.up.empresa.lazydatatable.GenericDataModel;
 import com.up.empresa.service.AdministradorService;
 
 @Named
@@ -24,8 +24,7 @@ public class AdministradoresController implements Serializable {
 	@Inject
 	private AdministradorService service;
 
-	@Inject
-	private AdministradoresDataModel lazyModel;
+	private GenericDataModel<Administrador> lazyModel;
 
 	@Inject
 	private MessageHelper helper;
@@ -43,6 +42,7 @@ public class AdministradoresController implements Serializable {
 	@PostConstruct
 	private void onInit() {
 		token = usuarioLogado.getToken();
+		lazyModel = new GenericDataModel<>(service, token);
 	}
 
 	public String remover(Administrador p) {
@@ -64,11 +64,11 @@ public class AdministradoresController implements Serializable {
 		this.administradores = administradores;
 	}
 
-	public AdministradoresDataModel getLazyModel() {
+	public GenericDataModel<Administrador> getLazyModel() {
 		return lazyModel;
 	}
 
-	public void setLazyModel(AdministradoresDataModel lazyModel) {
+	public void setLazyModel(GenericDataModel<Administrador> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
 

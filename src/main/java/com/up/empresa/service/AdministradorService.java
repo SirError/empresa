@@ -3,6 +3,7 @@ package com.up.empresa.service;
 import java.io.Serializable;
 import java.util.Properties;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
@@ -16,9 +17,11 @@ import javax.ws.rs.core.Response;
 import com.up.empresa.config.Configuration;
 import com.up.empresa.entity.Administrador;
 import com.up.empresa.entity.Table;
+import com.up.empresa.generics.TableService;
 
 @Named
-public class AdministradorService implements Serializable{
+@Default
+public class AdministradorService implements Serializable, TableService<Administrador>{
     
 	private static final long serialVersionUID = 1L;
 
@@ -83,5 +86,18 @@ public class AdministradorService implements Serializable{
     	         
     	          .delete();
     }
+
+	@Override
+	public Table<Administrador> getPage(Integer page, Integer pageSize, String filter, String token) {
+		WebTarget query = client.target(getUri() + "administrador").queryParam("page", page).queryParam("limit",
+				pageSize);
+
+		if (filter != null && !filter.isEmpty())
+			query = query.queryParam("search", filter);
+
+		return query.request(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token)
+				.get(new GenericType<Table<Administrador>>() {
+				});
+	}
 
 }

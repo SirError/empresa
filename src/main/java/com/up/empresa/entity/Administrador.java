@@ -12,10 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.up.empresa.generics.Entidade;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "id", "nome", "login", "email", "password" })
-public class Administrador {
+public class Administrador implements Entidade{
 
 	@JsonProperty("id")
 	private Integer id;
