@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/template.xhtml">
+	    <ui:define name="title">
+	        Credenciados
+	    </ui:define>
+	
+		<ui:define name="implementation">
+
+	    	<h:form>
+	    		<div class="ui-fluid">
+	    			<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<p:dataTable var="item" 
+					             value="#{credenciadosController.lazyModel}" 
+					             paginator="true" 
+				                 paginatorPosition="top"
+				                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+				                 	{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"				        
+					             rows="10"
+				                 selectionMode="single" 
+				                 reflow="true"
+				                 id="carTable" 
+				                 lazy="true"
+                                 widgetVar="gridVar" 
+				                 >
+				        <f:facet name="header">
+				            <p:outputPanel>
+				                <h:outputText value="Buscar:" />
+				                <p:inputText id="globalFilter" onkeydown="executeFilter(event,'gridVar'); " style="width:150px" placeholder="Buscar por.."/>
+				            </p:outputPanel>
+				        </f:facet>         
+				  		<f:facet name="paginatorTopLeft">
+				            <p:commandButton icon="fa fa-plus" style="width: 30px" action="/credenciado?faces-redirect=true" />
+				        </f:facet>
+				        <p:column headerText="Ações">
+				        	<p:commandButton  action="#{credenciadosController.alterar(item)}"
+				        	                  icon="fa fa-edit"
+				        	                  style="width: 30px"  />
+				        	<p:commandButton  action="#{credenciadosController.remover(item)}"
+				        					  icon="fa fa-trash" 
+				        	                  style="width: 30px" 
+				        	                  update="@form" >
+				        	   <p:confirm header="Confirmação" 
+				        	              message="Deseja remover o registro?" 
+				        	              icon="ui-icon-alert" 
+				        	              />               
+				        	</p:commandButton>                  
+				        </p:column>
+				        <p:column headerText="Id">
+				            <h:outputText value="#{item.id}" />
+				        </p:column>
+				        <p:column headerText="Razão Social">
+				            <h:outputText value="#{item.razao}" />
+				        </p:column>
+				        <p:column headerText="Nome Fantasia">
+				            <h:outputText value="#{item.fantasia}" />
+				        </p:column>
+				        <p:column headerText="CNPJ">
+				            <h:outputText value="#{item.cnpj}" />
+				        </p:column>
+				        <p:column headerText="Inscrição Estadual">
+				            <h:outputText value="#{item.ie}" />
+				        </p:column>
+				        <p:column headerText="E-mail">
+				            <h:outputText value="#{item.email}" />
+				        </p:column>
+				        <p:column headerText="Telefone">
+				            <h:outputText value="#{item.telefone}" />
+				        </p:column>
+				        <p:column headerText="Proprietário">
+				            <h:outputText value="#{item.proprietario}" />
+				        </p:column>
+				        <p:column headerText="Contato">
+				            <h:outputText value="#{item.contato}" />
+				        </p:column>
+				        <p:column headerText="Taxa">
+				            <h:outputText value="#{item.taxa}" />
+				        </p:column>
+				    </p:dataTable>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>

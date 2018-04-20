@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.up.empresa.config.Configuration;
-import com.up.empresa.entity.Administrador;
+import com.up.empresa.entity.Credenciado;
 import com.up.empresa.entity.Table;
 import com.up.empresa.generics.TableService;
 
 @Named
 @Default
-public class AdministradorService implements Serializable, TableService<Administrador>{
+public class CredenciadoService implements Serializable, TableService<Credenciado>{
     
 	private static final long serialVersionUID = 1L;
 
@@ -35,37 +35,38 @@ public class AdministradorService implements Serializable, TableService<Administ
 		return properties.getProperty("url");
 	}
 	
-	public Administrador get(int id) {
+	public Credenciado get(int id, String token) {
         return client
-          .target(getUri() + "administrador")
+          .target(getUri() + "credenciado")
           
           .path(String.valueOf(id))
           .request(MediaType.APPLICATION_JSON)
-          .get(Administrador.class);
+          .header("Authorization", "Bearer " + token)
+          .get(Credenciado.class);
     }
     
-    public Administrador save(Administrador p, String token) {
+    public Credenciado save(Credenciado p, String token) {
     	return client
-    	          .target(getUri() + "administrador")
+    	          .target(getUri() + "credenciado")
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
-    	          .post(Entity.json(p), Administrador.class);
+    	          .post(Entity.json(p), Credenciado.class);
     }
     
-    public Administrador update(Administrador p, String token) {
+    public Credenciado update(Credenciado p, String token) {
     	return client
-    	          .target(getUri() + "administrador/" + p.getId())
+    	          .target(getUri() + "credenciado/" + p.getId())
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
-    	          .put(Entity.json(p), Administrador.class);
+    	          .put(Entity.json(p), Credenciado.class);
     }
     
 
-    public Response delete(Administrador p, String token) {
+    public Response delete(Credenciado p, String token) {
     	  return client
-    	          .target(getUri() + "administrador/" + p.getId())
+    	          .target(getUri() + "credenciado/" + p.getId())
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
@@ -73,8 +74,8 @@ public class AdministradorService implements Serializable, TableService<Administ
     }
 
 	@Override
-	public Table<Administrador> getPage(Integer page, Integer pageSize, String filter, String token) {
-		WebTarget query = client.target(getUri() + "administrador")
+	public Table<Credenciado> getPage(Integer page, Integer pageSize, String filter, String token) {
+		WebTarget query = client.target(getUri() + "credenciado")
 				                .queryParam("page", page)
 				                .queryParam("limit", pageSize);
 
@@ -83,7 +84,7 @@ public class AdministradorService implements Serializable, TableService<Administ
 
 		return query.request(MediaType.APPLICATION_JSON)
 				    .header("Authorization", "Bearer " + token)
-				    .get(new GenericType<Table<Administrador>>() {});
+				    .get(new GenericType<Table<Credenciado>>() {});
 	}
 
 }

@@ -52,6 +52,7 @@ public class GenericDataModel<T extends Entidade> extends LazyDataModel<T> {
 			return data;
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

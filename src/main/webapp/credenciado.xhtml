@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="content">
+	    	<h:form>
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" 
+							             value="#{credenciadoController.credenciado.id}"
+							             readonly="true"/>
+						</div>
+						<div class="ui-g-10">
+							<p:outputLabel for="razao" value="Razão Social" />
+							<p:inputText id="razao" value="#{credenciadoController.credenciado.razao}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+					    <div class="ui-g-4">
+					    	<p:outputLabel for="fantasia"	value="Nome Fantasia"/>
+							<p:inputText id="fantasia" 
+							             value="#{credenciadoController.credenciado.fantasia}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="cnpj"	value="CNPJ"/>
+							<p:inputText id="cnpj" 
+							             value="#{credenciadoController.credenciado.cnpj}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="ie"	value="Inscrição Estadual"/>
+							<p:inputText id="ie" 
+							             value="#{credenciadoController.credenciado.ie}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel for="email" value="E-mail" />
+							<p:inputText id="email" value="#{credenciadoController.credenciado.email}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+					    <div class="ui-g-4">
+					    	<p:outputLabel for="telefone"	value="telefone"/>
+							<p:inputText id="telefone" 
+							             value="#{credenciadoController.credenciado.telefone}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="proprietario"	value="Proprietario"/>
+							<p:inputText id="proprietario" 
+							             value="#{credenciadoController.credenciado.proprietario}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="contato"	value="Contato"/>
+							<p:inputText id="contato" 
+							             value="#{credenciadoController.credenciado.contato}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+					    	<p:outputLabel for="taxa"	value="Taxa"/>
+							<p:inputText id="taxa" 
+							             value="#{credenciadoController.credenciado.taxa}"
+							             />
+						</div>
+					</div>
+						
+					<div class="ui-g">	
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Salvar" 
+							                 action="#{credenciadoController.salvar()}"
+							                 update="@form"/>
+						</div>
+						<div class="ui-g-4 ui-sm-6">
+							<p:button value="Cancelar"
+							          outcome="/credenciados?faces-redirect=true"
+							          />
+						</div>
+					</div>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>
