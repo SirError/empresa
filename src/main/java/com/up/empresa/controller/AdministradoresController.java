@@ -42,7 +42,7 @@ public class AdministradoresController implements Serializable {
 	@PostConstruct
 	private void onInit() {
 		token = usuarioLogado.getToken();
-		lazyModel = new GenericDataModel<>(service, token);
+		lazyModel = new GenericDataModel<>(service, token, null);
 	}
 
 	public String remover(Administrador p) {

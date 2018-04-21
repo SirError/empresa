@@ -42,7 +42,7 @@ public class CredenciadosController implements Serializable {
 	@PostConstruct
 	private void onInit() {
 		token = usuarioLogado.getToken();
-		lazyModel = new GenericDataModel<>(service, token);
+		lazyModel = new GenericDataModel<>(service, token, null);
 	}
 
 	public String remover(Credenciado p) {

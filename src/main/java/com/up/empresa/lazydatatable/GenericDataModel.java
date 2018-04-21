@@ -20,9 +20,12 @@ public class GenericDataModel<T extends Entidade> extends LazyDataModel<T> {
 
 	private List<T> data;
 
-	public GenericDataModel(TableService<T> datasource, String token) {
+	private String url;
+
+	public GenericDataModel(TableService<T> datasource, String token, String url) {
 		this.datasource = datasource;
 		this.token = token;
+		this.url = url != null ? url : "";
 	}
 
 	@Override
@@ -45,7 +48,7 @@ public class GenericDataModel<T extends Entidade> extends LazyDataModel<T> {
 		try {
 			String filter = (String) filters.get("globalFilter");
 			int p = first / pageSize;
-			Table<T> page = datasource.getPage(++p, pageSize, filter, token);
+			Table<T> page = datasource.getPage(++p, pageSize, filter, token, this.url);
 			this.setRowCount(page.getCount());
 			data = page.getRows();
 

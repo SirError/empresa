@@ -73,7 +73,7 @@ public class AdministradorService implements Serializable, TableService<Administ
     }
 
 	@Override
-	public Table<Administrador> getPage(Integer page, Integer pageSize, String filter, String token) {
+	public Table<Administrador> getPage(Integer page, Integer pageSize, String filter, String token, String url) {
 		WebTarget query = client.target(getUri() + "administrador")
 				                .queryParam("page", page)
 				                .queryParam("limit", pageSize);

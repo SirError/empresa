@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.up.empresa.config.Configuration;
-import com.up.empresa.entity.Credenciado;
+import com.up.empresa.entity.Conta;
 import com.up.empresa.entity.Table;
 import com.up.empresa.generics.TableService;
 
 @Named
 @Default
-public class CredenciadoService implements Serializable, TableService<Credenciado>{
+public class ContaService implements Serializable, TableService<Conta>{
     
 	private static final long serialVersionUID = 1L;
 
@@ -35,38 +35,38 @@ public class CredenciadoService implements Serializable, TableService<Credenciad
 		return properties.getProperty("url");
 	}
 	
-	public Credenciado get(int id, String token) {
+	public Conta get(int credenciadoId, int id, String token) {
         return client
-          .target(getUri() + "credenciado")
+          .target(getUri() + "credenciado/"+ credenciadoId +"/conta")
           
           .path(String.valueOf(id))
           .request(MediaType.APPLICATION_JSON)
           .header("Authorization", "Bearer " + token)
-          .get(Credenciado.class);
+          .get(Conta.class);
     }
     
-    public Credenciado save(Credenciado p, String token) {
+    public Conta save(int credenciadoId, Conta p, String token) {
     	return client
-    	          .target(getUri() + "credenciado")
+    	          .target(getUri() + "credenciado/"+ credenciadoId +"/conta")
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
-    	          .post(Entity.json(p), Credenciado.class);
+    	          .post(Entity.json(p), Conta.class);
     }
     
-    public Credenciado update(Credenciado p, String token) {
+    public Conta update(int credenciadoId, Conta p, String token) {
     	return client
-    	          .target(getUri() + "credenciado/" + p.getId())
+    	          .target(getUri() + "credenciado/"+ credenciadoId +"/conta/" + p.getId())
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
-    	          .put(Entity.json(p), Credenciado.class);
+    	          .put(Entity.json(p), Conta.class);
     }
     
 
-    public Response delete(Credenciado p, String token) {
+    public Response delete(int credenciadoId, int id, String token) {
     	  return client
-    	          .target(getUri() + "credenciado/" + p.getId())
+    	          .target(getUri() + "credenciado/"+ credenciadoId +"/conta/" + id)
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
@@ -74,8 +74,8 @@ public class CredenciadoService implements Serializable, TableService<Credenciad
     }
 
 	@Override
-	public Table<Credenciado> getPage(Integer page, Integer pageSize, String filter, String token, String url) {
-		WebTarget query = client.target(getUri() + "credenciado")
+	public Table<Conta> getPage(Integer page, Integer pageSize, String filter, String token, String url) {
+		WebTarget query = client.target(getUri() + url + "conta")
 				                .queryParam("page", page)
 				                .queryParam("limit", pageSize);
 
@@ -84,7 +84,7 @@ public class CredenciadoService implements Serializable, TableService<Credenciad
 
 		return query.request(MediaType.APPLICATION_JSON)
 				    .header("Authorization", "Bearer " + token)
-				    .get(new GenericType<Table<Credenciado>>() {});
+				    .get(new GenericType<Table<Conta>>() {});
 	}
 
 }

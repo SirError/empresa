@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition template="/template.xhtml">
 		<ui:define name="content">
 	    	<h:form>
@@ -32,14 +33,14 @@
 							             />
 						</div>
 						
-						<div class="ui-g-4">
+						<div class="ui-g-2">
 					    	<p:outputLabel for="cnpj"	value="CNPJ"/>
 							<p:inputText id="cnpj" 
 							             value="#{credenciadoController.credenciado.cnpj}"
 							             />
 						</div>
 						
-						<div class="ui-g-4">
+						<div class="ui-g-2">
 					    	<p:outputLabel for="ie"	value="Inscrição Estadual"/>
 							<p:inputText id="ie" 
 							             value="#{credenciadoController.credenciado.ie}"
@@ -53,8 +54,8 @@
 					</div>
 					
 					<div class="ui-g">
-					    <div class="ui-g-4">
-					    	<p:outputLabel for="telefone"	value="telefone"/>
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="telefone"	value="Telefone"/>
 							<p:inputText id="telefone" 
 							             value="#{credenciadoController.credenciado.telefone}"
 							             />
@@ -74,7 +75,7 @@
 							             />
 						</div>
 						
-						<div class="ui-g-4">
+						<div class="ui-g-2">
 					    	<p:outputLabel for="taxa"	value="Taxa"/>
 							<p:inputText id="taxa" 
 							             value="#{credenciadoController.credenciado.taxa}"
@@ -96,6 +97,65 @@
 					</div>
 				</div>
 			</h:form>  
+			
+			<p:tabView>
+				<p:tab title="Contas">
+					<h:form>
+			    		<div class="ui-fluid">
+			    
+							<p:dataTable var="item" 
+							             value="#{contasController.lazyModel}" 
+							             paginator="true" 
+						                 paginatorPosition="top"
+						                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+						                 	{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"				        
+							             rows="10"
+						                 selectionMode="single" 
+						                 reflow="true"
+						                 id="carTable" 
+						                 lazy="true"
+		                                 widgetVar="gridVar" 
+						                 >
+						        <f:facet name="header">
+						            <p:outputPanel>
+						                <h:outputText value="Buscar:" />
+						                <p:inputText id="globalFilter" onkeydown="executeFilter(event,'gridVar'); " style="width:150px" placeholder="Buscar por.."/>
+						            </p:outputPanel>
+						        </f:facet>         
+						  		<f:facet name="paginatorTopLeft">
+						            <p:commandButton icon="fa fa-plus" style="width: 30px" action="#{contasController.incluir()}" />
+						        </f:facet>
+						        <p:column headerText="Ações">
+						        	<p:commandButton  action="#{contasController.alterar(item)}"
+						        	                  icon="fa fa-edit"
+						        	                  style="width: 30px"  />
+						        	<p:commandButton  action="#{contasController.remover(item)}"
+						        					  icon="fa fa-trash" 
+						        	                  style="width: 30px" 
+						        	                  update="@form" >
+						        	   <p:confirm header="Confirmação" 
+						        	              message="Deseja remover o registro?" 
+						        	              icon="ui-icon-alert" 
+						        	              />               
+						        	</p:commandButton>                  
+						        </p:column>
+						        <p:column headerText="Id">
+						            <h:outputText value="#{item.id}" />
+						        </p:column>
+						        <p:column headerText="Banco">
+						            <h:outputText value="#{item.banco}" />
+						        </p:column>
+						        <p:column headerText="Agência">
+						            <h:outputText value="#{item.agencia}" />
+						        </p:column>
+						        <p:column headerText="Conta">
+						            <h:outputText value="#{item.conta}" />
+						        </p:column>
+						    </p:dataTable>
+						</div>
+					</h:form>
+				</p:tab>
+			</p:tabView>
 	    </ui:define>
   </ui:composition>
 </html>

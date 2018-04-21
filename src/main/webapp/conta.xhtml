@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="content">
+	    	<h:form>
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" 
+							             value="#{contaController.conta.id}"
+							             readonly="true"/>
+						</div>
+						<div class="ui-g-2">
+							<p:outputLabel for="numero" value="Número" />
+							<p:inputText id="numero" value="#{contaController.conta.numero}"/>
+						</div>
+					
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="banco"	value="Banco"/>
+							<p:inputText id="banco" 
+							             value="#{contaController.conta.banco}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+					    	<p:outputLabel for="agencia"	value="Agencia"/>
+							<p:inputText id="agencia" 
+							             value="#{contaController.conta.agencia}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+							<p:outputLabel for="conta" value="Conta" />
+							<p:inputText id="conta" value="#{contaController.conta.conta}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+						<div class="ui-g-6">
+							<p:outputLabel for="favorecido" value="Favorecido" />
+							<p:inputText id="favorecido" value="#{contaController.conta.favorecido}"/>
+						</div>
+						<div class="ui-g-6">
+							<p:outputLabel for="favorecidoDocumento" value="Documento Favorecido" />
+							<p:inputText id="favorecidoDocumento" value="#{contaController.conta.favorecidoDocumento}"/>
+						</div>
+					</div>
+						
+					<div class="ui-g">	
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Salvar" 
+							                 action="#{contaController.salvar()}"
+							                 update="@form"/>
+						</div>
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Sair" 
+							                 action="#{contaController.sair()}"
+							                 />
+						</div>
+					</div>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>
