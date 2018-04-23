@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="content">
+	    	<h:form>
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" 
+							             value="#{enderecoController.endereco.id}"
+							             readonly="true"/>
+						</div>
+					    <div class="ui-g-4">
+					    	<p:outputLabel for="endereco"	value="Endereço"/>
+							<p:inputText id="endereco" 
+							             value="#{enderecoController.endereco.endereco}"
+							             />
+						</div>
+						<div class="ui-g-2">
+							<p:outputLabel for="numero" value="Número" />
+							<p:inputText id="numero" value="#{enderecoController.endereco.numero}"/>
+						</div>
+					
+						
+						<div class="ui-g-2">
+					    	<p:outputLabel for="bairro"	value="Bairro"/>
+							<p:inputText id="bairro" 
+							             value="#{enderecoController.endereco.bairro}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+							<p:outputLabel for="cep" value="CEP" />
+							<p:inputText id="cep" value="#{enderecoController.endereco.cep}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+						<div class="ui-g-2">
+							<p:outputLabel for="cidade" value="Cidade" />
+							<p:inputText id="cidade" value="#{enderecoController.endereco.cidade}"/>
+						</div>
+						<div class="ui-g-2">
+							<p:outputLabel for="uf" value="UF" />
+							<p:inputText id="uf" value="#{enderecoController.endereco.uf}"/>
+						</div>
+					</div>
+						
+					<div class="ui-g">	
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Salvar" 
+							                 action="#{enderecoController.salvar()}"
+							                 update="@form"/>
+						</div>
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Sair" 
+							                 action="#{enderecoController.sair()}"
+							                 />
+						</div>
+					</div>
+				</div>
+			</h:form>  
+	    </ui:define>
+  </ui:composition>
+</html>
