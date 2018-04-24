@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.up.empresa.config.Configuration;
-import com.up.empresa.entity.Empresa;
+import com.up.empresa.entity.EnderecoEmpresa;
 import com.up.empresa.entity.Table;
 import com.up.empresa.generics.TableService;
 
 @Named
 @Default
-public class EmpresaService implements Serializable, TableService<Empresa>{
+public class EnderecoEmpresaService implements Serializable, TableService<EnderecoEmpresa>{
     
 	private static final long serialVersionUID = 1L;
 
@@ -35,36 +35,38 @@ public class EmpresaService implements Serializable, TableService<Empresa>{
 		return properties.getProperty("url");
 	}
 	
-	public Empresa get(int id, String token) {
+	public EnderecoEmpresa get(int empresaId, int id, String token) {
         return client
-          .target(getUri() + "empresa")
+          .target(getUri() + "empresa/"+ empresaId +"/endereco")
           
           .path(String.valueOf(id))
           .request(MediaType.APPLICATION_JSON)
           .header("Authorization", "Bearer " + token)
-          .get(Empresa.class);
+          .get(EnderecoEmpresa.class);
     }
     
-    public Empresa save(Empresa p, String token) {
+    public EnderecoEmpresa save(int empresaId, EnderecoEmpresa p, String token) {
     	return client
-    	          .target(getUri() + "empresa")
+    	          .target(getUri() + "empresa/"+ empresaId +"/endereco")
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
-    	          .post(Entity.json(p), Empresa.class);
+    	         
+    	          .post(Entity.json(p), EnderecoEmpresa.class);
     }
     
-    public Empresa update(Empresa p, String token) {
+    public EnderecoEmpresa update(int empresaId, EnderecoEmpresa p, String token) {
     	return client
-    	          .target(getUri() + "empresa/" + p.getId())
+    	          .target(getUri() + "empresa/"+ empresaId +"/endereco/" + p.getId())
     	          .request(MediaType.APPLICATION_JSON)
-    	          .header("Authorization", "Bearer " + token)    	         
-    	          .put(Entity.json(p), Empresa.class);
+    	          .header("Authorization", "Bearer " + token)
+    	         
+    	          .put(Entity.json(p), EnderecoEmpresa.class);
     }
     
 
-    public Response delete(Empresa p, String token) {
+    public Response delete(int empresaId, int id, String token) {
     	  return client
-    	          .target(getUri() + "empresa/" + p.getId())
+    	          .target(getUri() + "empresa/"+ empresaId +"/endereco/" + id)
     	          .request(MediaType.APPLICATION_JSON)
     	          .header("Authorization", "Bearer " + token)
     	         
@@ -72,8 +74,8 @@ public class EmpresaService implements Serializable, TableService<Empresa>{
     }
 
 	@Override
-	public Table<Empresa> getPage(Integer page, Integer pageSize, String filter, String token, String url) {
-		WebTarget query = client.target(getUri() + "empresa")
+	public Table<EnderecoEmpresa> getPage(Integer page, Integer pageSize, String filter, String token, String url) {
+		WebTarget query = client.target(getUri() + url + "endereco")
 				                .queryParam("page", page)
 				                .queryParam("limit", pageSize);
 
@@ -82,7 +84,7 @@ public class EmpresaService implements Serializable, TableService<Empresa>{
 
 		return query.request(MediaType.APPLICATION_JSON)
 				    .header("Authorization", "Bearer " + token)
-				    .get(new GenericType<Table<Empresa>>() {});
+				    .get(new GenericType<Table<EnderecoEmpresa>>() {});
 	}
 
 }
