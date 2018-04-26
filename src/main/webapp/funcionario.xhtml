@@ -1,0 +1,162 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="/template.xhtml">
+		<ui:define name="content">
+	    	<h:form>
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12">
+					    	<p:messages/>
+						</div>
+					</div>	
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="input"	value="ID"/>
+							<p:inputText id="input" 
+							             value="#{funcionarioController.funcionario.id}"
+							             readonly="true"/>
+						</div>
+						<div class="ui-g-10">
+							<p:outputLabel for="nome" value="Nome" />
+							<p:inputText id="nome" value="#{funcionarioController.funcionario.nome}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+					    <div class="ui-g-4">
+					    	<p:outputLabel for="mae"	value="Mãe"/>
+							<p:inputText id="mae" 
+							             value="#{funcionarioController.funcionario.mae}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+					    	<p:outputLabel for="cpf"	value="CPF"/>
+							<p:inputText id="cpf" 
+							             value="#{funcionarioController.funcionario.cpf}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+					    	<p:outputLabel for="rg"	value="RG"/>
+							<p:inputText id="rg" 
+							             value="#{funcionarioController.funcionario.rg}"
+							             />
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel for="email" value="E-mail" />
+							<p:inputText id="email" value="#{funcionarioController.funcionario.email}"/>
+						</div>
+					</div>
+					
+					<div class="ui-g">
+					    <div class="ui-g-2">
+					    	<p:outputLabel for="telefone"	value="Telefone"/>
+							<p:inputText id="telefone" 
+							             value="#{funcionarioController.funcionario.telefone}"
+							             />
+						</div>
+						
+						<div class="ui-g-3">
+					    	<p:outputLabel for="limite"	value="Limite"/>
+							<p:inputText id="limite" 
+							             value="#{funcionarioController.funcionario.limite}"
+							             />
+						</div>
+						
+						<div class="ui-g-3">
+					    	<p:outputLabel for="numeroRegistro"	value="Número Registro"/>
+							<p:inputText id="numeroRegistro" 
+							             value="#{funcionarioController.funcionario.numeroRegistro}"
+							             />
+						</div>
+						
+						<div class="ui-g-2">
+					    	<p:outputLabel for="dataNascimento"	value="Dt. Nascimento"/>
+							<p:calendar id="dataNascimento" 
+							             value="#{funcionarioController.funcionario.dataNascimento}"
+							             pattern="dd/MM/yyyy"/>
+						</div>
+					</div>
+						
+					<div class="ui-g">	
+						<div class="ui-g-4 ui-sm-6">
+							<p:commandButton value="Salvar" 
+							                 action="#{funcionarioController.salvar()}"
+							                 update="@form"/>
+						</div>
+						<div class="ui-g-4 ui-sm-6">
+							<p:button value="Cancelar"
+							          outcome="/funcionarios?faces-redirect=true"
+							          />
+						</div>
+					</div>
+				</div>
+			</h:form>  
+			
+			<p:tabView>
+				
+<!-- 				<p:tab title="Endereços"> -->
+<!-- 					<h:form> -->
+<!-- 			    		<div class="ui-fluid"> -->
+			    
+<!-- 							<p:dataTable var="item"  -->
+<!-- 							             value="#{enderecosFuncionarioController.lazyModel}"  -->
+<!-- 							             paginator="true"  -->
+<!-- 						                 paginatorPosition="top" -->
+<!-- 						                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  -->
+<!--  						                 	{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"				          -->
+<!-- 							             rows="10" -->
+<!-- 						                 selectionMode="single"  -->
+<!-- 						                 reflow="true" -->
+<!-- 						                 id="carTable"  -->
+<!-- 						                 lazy="true" -->
+<!-- 		                                 widgetVar="endGridVar"  -->
+<!-- 						                 > -->
+<!-- 						        <f:facet name="header"> -->
+<!-- 						            <p:outputPanel> -->
+<!-- 						                <h:outputText value="Buscar:" /> -->
+<!-- 						                <p:inputText id="globalFilter" onkeydown="executeFilter(event,'endGridVar'); " style="width:150px" placeholder="Buscar por.."/> -->
+<!-- 						            </p:outputPanel> -->
+<!-- 						        </f:facet>          -->
+<!-- 						  		<f:facet name="paginatorTopLeft"> -->
+<!-- 						            <p:commandButton icon="fa fa-plus" style="width: 30px" action="#{enderecosFuncionarioController.incluir()}" /> -->
+<!-- 						        </f:facet> -->
+<!-- 						        <p:column headerText="Ações"> -->
+<!-- 						        	<p:commandButton  action="#{enderecosFuncionarioController.alterar(item)}" -->
+<!-- 						        	                  icon="fa fa-edit" -->
+<!-- 						        	                  style="width: 30px"  /> -->
+<!-- 						        	<p:commandButton  action="#{enderecosFuncionarioController.remover(item)}" -->
+<!-- 						        					  icon="fa fa-trash"  -->
+<!-- 						        	                  style="width: 30px"  -->
+<!-- 						        	                  update="@form" > -->
+<!-- 						        	   <p:confirm header="Confirmação"  -->
+<!-- 						        	              message="Deseja remover o registro?"  -->
+<!-- 						        	              icon="ui-icon-alert"  -->
+<!-- 						        	              />                -->
+<!-- 						        	</p:commandButton>                   -->
+<!-- 						        </p:column> -->
+<!-- 						        <p:column headerText="Id"> -->
+<!-- 						            <h:outputText value="#{item.id}" /> -->
+<!-- 						        </p:column> -->
+<!-- 						        <p:column headerText="Endereço"> -->
+<!-- 						            <h:outputText value="#{item.endereco}" /> -->
+<!-- 						        </p:column> -->
+<!-- 						        <p:column headerText="Bairro"> -->
+<!-- 						            <h:outputText value="#{item.bairro}" /> -->
+<!-- 						        </p:column> -->
+<!-- 						        <p:column headerText="Cidade"> -->
+<!-- 						            <h:outputText value="#{item.cidade}" /> -->
+<!-- 						        </p:column> -->
+<!-- 						    </p:dataTable> -->
+<!-- 						</div> -->
+<!-- 					</h:form> -->
+<!-- 				</p:tab> -->
+			</p:tabView>
+	    </ui:define>
+  </ui:composition>
+</html>

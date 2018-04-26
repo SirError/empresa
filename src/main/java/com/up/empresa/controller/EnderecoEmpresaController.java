@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.up.empresa.entity.Empresa;
-import com.up.empresa.entity.EnderecoEmpresa;
+import com.up.empresa.entity.Endereco;
 import com.up.empresa.helper.MessageHelper;
 import com.up.empresa.service.EnderecoEmpresaService;
 
@@ -20,7 +20,7 @@ public class EnderecoEmpresaController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private EnderecoEmpresa endereco = new EnderecoEmpresa();
+	private Endereco endereco = new Endereco();
 
 	@Inject
 	private EnderecoEmpresaService service;
@@ -44,7 +44,7 @@ public class EnderecoEmpresaController implements Serializable {
 		Object object = flash.get("endereco");
 		token = usuarioLogado.getToken();
 		if (object != null) {
-			this.endereco = (EnderecoEmpresa) object;
+			this.endereco = (Endereco) object;
 			this.endereco = service.get(empresa.getId(), endereco.getId(), token);
 		}
 	}
@@ -67,11 +67,11 @@ public class EnderecoEmpresaController implements Serializable {
 		return "/empresa?faces-redirect=true";
 	}
 
-	public EnderecoEmpresa getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(EnderecoEmpresa endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 

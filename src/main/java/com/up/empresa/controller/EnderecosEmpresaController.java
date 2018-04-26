@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.up.empresa.entity.Empresa;
-import com.up.empresa.entity.EnderecoEmpresa;
+import com.up.empresa.entity.Endereco;
 import com.up.empresa.helper.MessageHelper;
 import com.up.empresa.lazydatatable.GenericDataModel;
 import com.up.empresa.service.EnderecoEmpresaService;
@@ -25,7 +25,7 @@ public class EnderecosEmpresaController implements Serializable {
 	@Inject
 	private EnderecoEmpresaService service;
 
-	private GenericDataModel<EnderecoEmpresa> lazyModel;
+	private GenericDataModel<Endereco> lazyModel;
 
 	@Inject
 	private MessageHelper helper;
@@ -39,7 +39,7 @@ public class EnderecosEmpresaController implements Serializable {
 	@Inject
 	private EmpresaController empresaController;
 	
-	private List<EnderecoEmpresa> enderecos;
+	private List<Endereco> enderecos;
 
 	private String token;
 
@@ -53,7 +53,7 @@ public class EnderecosEmpresaController implements Serializable {
 		lazyModel = new GenericDataModel<>(service, token, url);
 	}
 
-	public String remover(EnderecoEmpresa p) {
+	public String remover(Endereco p) {
 		service.delete(empresa.getId(), p.getId(), token);
 		helper.onFlash().addMessage(new FacesMessage("Registro removido com sucesso"));
 		return null;
@@ -64,25 +64,25 @@ public class EnderecosEmpresaController implements Serializable {
 		return "/enderecoempresa?faces-redirect=true";
 	}
 	
-	public String alterar(EnderecoEmpresa p) {
+	public String alterar(Endereco p) {
 		flash.put("empresa", empresa);
 		flash.put("endereco", p);
 		return "/enderecoempresa?faces-redirect=true";
 	}
 
-	public List<EnderecoEmpresa> getEnderecoEmpresas() {
+	public List<Endereco> getEnderecoEmpresas() {
 		return enderecos;
 	}
 
-	public void setEnderecoEmpresas(List<EnderecoEmpresa> enderecos) {
+	public void setEnderecoEmpresas(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
-	public GenericDataModel<EnderecoEmpresa> getLazyModel() {
+	public GenericDataModel<Endereco> getLazyModel() {
 		return lazyModel;
 	}
 
-	public void setLazyModel(GenericDataModel<EnderecoEmpresa> lazyModel) {
+	public void setLazyModel(GenericDataModel<Endereco> lazyModel) {
 		this.lazyModel = lazyModel;
 	}
 
